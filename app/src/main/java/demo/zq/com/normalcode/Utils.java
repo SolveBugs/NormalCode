@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -17,6 +18,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 常用代码片段
@@ -125,5 +131,47 @@ public class Utils {
     public void call(String phoneNum, Context context) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNum));
         context.startActivity(intent);
+    }
+
+    //9. 字符串是否包含汉字
+    public static boolean checkChinese(String sequence) {
+        final String format = "[\\u4E00-\\u9FA5\\uF900-\\uFA2D]";
+        boolean result = false;
+        Pattern pattern = Pattern.compile(format);
+        Matcher matcher = pattern.matcher(sequence);
+        result = matcher.find();
+        return result;
+    }
+
+    //10.从assets 文件夹中读取图片
+    public static Drawable loadImageFromAsserts(final Context ctx, String fileName) {
+        try {
+            InputStream is = ctx.getResources().getAssets().open(fileName);
+            return Drawable.createFromStream(is, null);
+        } catch (IOException e) {
+            if (e != null) {
+                e.printStackTrace();
+            }
+        } catch (OutOfMemoryError e) {
+            if (e != null) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            if (e != null) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    //11.判断字符串是否为空
+    public static boolean isNull(String string) {
+        if (string != null) {
+            string = string.trim();
+            if (string.length() != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
