@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Matcher;
@@ -139,7 +140,7 @@ public class Utils {
         boolean result = false;
         Pattern pattern = Pattern.compile(format);
         Matcher matcher = pattern.matcher(sequence);
-        result = matcher.find();
+        result = matcher.find();//
         return result;
     }
 
@@ -173,5 +174,24 @@ public class Utils {
             }
         }
         return true;
+    }
+
+    //12.递归删除文件夹及里边的文件
+    public void deletFiles(File file) {
+        if (file.isFile()) {
+            file.delete();
+            return;
+        }
+        if (file.isDirectory()) {
+            File[] childFile = file.listFiles();
+            if (childFile == null || childFile.length == 0) {
+                file.delete();
+                return;
+            }
+            for (File f : childFile) {
+                deletFiles(f);
+            }
+            file.delete();
+        }
     }
 }
