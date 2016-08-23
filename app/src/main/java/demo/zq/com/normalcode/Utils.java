@@ -194,4 +194,6 @@ public class Utils {
             file.delete();
         }
     }
+    //13.非常全面的一个图片库，个人开发者必看
+    //http://www.iconfont.cn/collections
 }
