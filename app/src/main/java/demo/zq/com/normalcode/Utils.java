@@ -5,6 +5,7 @@ package demo.zq.com.normalcode;
  */
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -203,6 +204,7 @@ public class Utils {
     //http://www.iconfont.cn/collections
 
     //14.各种单位转换
+
     /**
      * 获得屏幕宽度（像素）
      *
@@ -282,11 +284,13 @@ public class Utils {
     }
 
     //15. 压缩图片，防止Bitmap过大导致OOM
+
     /**
      * 谷歌推荐使用方法，从资源中加载图像，并高效压缩，有效降低OOM的概率
-     * @param res 资源
-     * @param resId 图像资源的资源id
-     * @param reqWidth 要求图像压缩后的宽度
+     *
+     * @param res       资源
+     * @param resId     图像资源的资源id
+     * @param reqWidth  要求图像压缩后的宽度
      * @param reqHeight 要求图像压缩后的高度
      * @return
      */
@@ -304,7 +308,7 @@ public class Utils {
         options.inJustDecodeBounds = false;
         //将options.inPreferredConfig改成Bitmap.Config.RGB_565，
         // 是默认情况Bitmap.Config.ARGB_8888占用内存的一般
-        options.inPreferredConfig= Bitmap.Config.RGB_565;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
         return BitmapFactory.decodeResource(res, resId, options);
     }
 
@@ -335,5 +339,12 @@ public class Utils {
         }
 
         return inSampleSize;
+    }
+
+    //16.请求打开蓝牙
+    //REQUEST_ENABLE_BT自定义requestCode
+    int REQUEST_ENABLE_BT = 0;
+    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT) {
     }
 }
