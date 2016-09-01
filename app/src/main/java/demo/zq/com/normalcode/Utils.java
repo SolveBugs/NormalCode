@@ -347,4 +347,6 @@ public class Utils {
     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT) {
     }
+    //17.读取Excel文件
+     使用jxl jar包。
 }
