@@ -349,4 +349,11 @@ public class Utils {
     }
     //17.读取Excel文件
      使用jxl jar包。
+    //18.应用程序启动短暂白屏或者黑屏解决办法（启动页设置背景图片）
+    //1.自定义全屏主题
+    <style name="FlashStyle" parent="android:style/Theme.NoTitleBar.Fullscreen">
+    <item name="android:windowBackground">@drawable/start_app_flash</item>
+    </style>
+    //2.设置给闪屏页
+    android:theme="@style/FlashStyle"
 }
