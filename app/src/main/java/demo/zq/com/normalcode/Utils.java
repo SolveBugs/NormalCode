@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -356,4 +357,29 @@ public class Utils {
     </style>
     //2.设置给闪屏页
     android:theme="@style/FlashStyle"
+    //19.判断是否是短时间内重复点击按钮之类的动作（防止重复打开页面等）
+    private static long lastClickTime;
+    public synchronized static boolean isDoubleClick(long time) {
+        long currentTime = System.currentTimeMillis();
+        boolean isClick2;
+        if (currentTime - lastClickTime > time) {
+            lastClickTime = currentTime;
+            isClick2 = false;
+        } else {
+            isClick2 = true;
+        }
+        return isClick2;
+    }
+    //20.得到sd卡路径
+    public static String getSDCardPath() {
+        File sdcardDir = null;
+        boolean sdcardExist = Environment.getExternalStorageState().equals(
+                android.os.Environment.MEDIA_MOUNTED);
+        if (sdcardExist) {
+            sdcardDir = Environment.getExternalStorageDirectory();
+            return sdcardDir.toString();
+        } else {
+            return null;
+        }
+    }
 }
