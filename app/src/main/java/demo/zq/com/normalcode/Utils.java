@@ -383,4 +383,40 @@ public class Utils {
         }
     }
     //21测试本地连接github提交代码
+    //22 从网络路径下载图片保存到本地，并返回本地保存路径
+     public static String getImageURI(String networkPath, String dirPath, String s) {
+        if (networkPath == null) {
+            return null;
+        }
+        String name = networkPath.substring(networkPath.lastIndexOf("/"));
+        File dirFile = new File(dirPath);
+        if (!dirFile.exists()) {
+            dirFile.mkdirs();
+        }
+        File file = new File(dirFile, name + s);
+        try {
+            // 从网络上获取图片
+            URL url = new URL(networkPath);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            if (conn.getResponseCode() == 200) {
+                InputStream is = conn.getInputStream();
+                FileOutputStream fos = new FileOutputStream(file);
+                byte[] buffer = new byte[1024];
+                int len = 0;
+                while ((len = is.read(buffer)) != -1) {
+                    fos.write(buffer, 0, len);
+                }
+                is.close();
+                fos.close();
+                // 返回一个URI对象
+                return dirPath + File.separator + name + s;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
