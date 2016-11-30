@@ -419,4 +419,29 @@ public class Utils {
         }
         return null;
     }
+    //23
+    /**
+     * 改变系统语言为英文环境
+     */
+    private void initLanguage() {
+        try {
+            Log.d("Appcontext", "初始化的时候设置系统语言为英文环境");
+            Class<?> activityManagerNative = Class.forName("android.app.ActivityManagerNative");
+            Log.i("amnType", activityManagerNative.toString());
+
+            Object am = activityManagerNative.getMethod("getDefault").invoke(activityManagerNative);
+            Log.i("amType", am.getClass().toString());
+
+            Object config = am.getClass().getMethod("getConfiguration").invoke(am);
+            Log.i("configType", config.getClass().toString());
+            config.getClass().getDeclaredField("locale").set(config, Locale.ENGLISH);
+            config.getClass().getDeclaredField("userSetLocale").setBoolean(config, true);
+
+            am.getClass().getMethod("updateConfiguration", android.content.res.Configuration.class).invoke(am, config);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
