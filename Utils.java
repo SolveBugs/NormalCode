@@ -1,37 +1,7 @@
-package demo.zq.com.normalcode;
 
 /**
  * Created by zhen on 2016/8/19.
  */
-
-import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.Environment;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * 常用代码片段
  */
@@ -423,7 +393,7 @@ public class Utils {
     /**
      * 改变系统语言为英文环境
      */
-    private void initLanguage() {
+    public static void initLanguage() {
         try {
             Log.d("Appcontext", "初始化的时候设置系统语言为英文环境");
             Class<?> activityManagerNative = Class.forName("android.app.ActivityManagerNative");
@@ -443,5 +413,14 @@ public class Utils {
             e.printStackTrace();
         }
 
+    }
+    //24.异或运算和校验
+    public static byte getXor(byte[] datas) {
+        byte temp = datas[0];
+
+        for (int i = 1; i < datas.length; i++) {
+            temp ^= datas[i];
+        }
+        return temp;
     }
 }
