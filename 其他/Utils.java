@@ -7,7 +7,7 @@
  */
 public class Utils {
 
-    1.给当前界面添加一个透明度
+    //1.给当前界面添加一个透明度
     /**
      * 给界面添加透明度
      *
@@ -21,10 +21,10 @@ public class Utils {
         activity.getWindow().setAttributes(lp);
     }
 
-    2.一键添加qq群
+    //2.一键添加qq群
     //http://qun.qq.com/join.html 选择需要添加的群，然后选择手机平台，即可生成相应的代码。
 
-    3.得到当前版本号
+    //3.得到当前版本号
     public static int getVersionCode(Context context) {
         int code = 0;
         if (context == null) {
@@ -38,7 +38,7 @@ public class Utils {
         return code;
     }
 
-    4.判断当前网络是否可用
+    //4.判断当前网络是否可用
 
     public static boolean isNetworkConnected(Context context) {
         if (context != null) {
@@ -52,7 +52,7 @@ public class Utils {
         return false;
     }
 
-    5.当前是否是移动网络
+    //5.当前是否是移动网络
 
     public static boolean isMobileConnected(Context context) {
         if (context != null) {
@@ -66,7 +66,7 @@ public class Utils {
         return false;
     }
 
-    6.当前是否是wifi
+    //6.当前是否是wifi
 
     public static boolean isWifi(Context context) {
         if (context != null) {
@@ -79,7 +79,7 @@ public class Utils {
         return false;
     }
 
-    7.ListView根据item计算出实际的高度
+    //7.ListView根据item计算出实际的高度
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         // 获取ListView对应的Adapter
@@ -98,7 +98,7 @@ public class Utils {
         listView.setLayoutParams(params);
     }
 
-    8.拨打电话(记得在清单文件添加权限)
+    //8.拨打电话(记得在清单文件添加权限)
 
     /**
      * @param phoneNum
@@ -108,7 +108,7 @@ public class Utils {
         context.startActivity(intent);
     }
 
-    9. 字符串是否包含汉字
+    //9. 字符串是否包含汉字
     public static boolean checkChinese(String sequence) {
         final String format = "[\\u4E00-\\u9FA5\\uF900-\\uFA2D]";
         boolean result = false;
@@ -118,7 +118,7 @@ public class Utils {
         return result;
     }
 
-    10.从assets 文件夹中读取图片
+    //10.从assets 文件夹中读取图片
     public static Drawable loadImageFromAsserts(final Context ctx, String fileName) {
         try {
             InputStream is = ctx.getResources().getAssets().open(fileName);
@@ -139,7 +139,7 @@ public class Utils {
         return null;
     }
 
-    11.判断字符串是否为空
+    //11.判断字符串是否为空
     public static boolean isNull(String string) {
         if (string != null) {
             string = string.trim();
@@ -150,7 +150,7 @@ public class Utils {
         return true;
     }
 
-    12.递归删除文件夹及里边的文件
+    //12.递归删除文件夹及里边的文件
     public void deletFiles(File file) {
         if (file.isFile()) {
             file.delete();
@@ -168,10 +168,10 @@ public class Utils {
             file.delete();
         }
     }
-    13.非常全面的一个图片库，个人开发者必看
+    //13.非常全面的一个图片库，个人开发者必看
     //http://www.iconfont.cn/collections
 
-    14.各种单位转换
+    //14.各种单位转换
     /**
      * 获得屏幕宽度（像素）
      *
@@ -250,7 +250,7 @@ public class Utils {
         return (int) (spValue * fontScale + 0.5f);
     }
 
-    15. 压缩图片，防止Bitmap过大导致OOM
+    //15. 压缩图片，防止Bitmap过大导致OOM
     /**
      * 谷歌推荐使用方法，从资源中加载图像，并高效压缩，有效降低OOM的概率
      *
@@ -307,22 +307,22 @@ public class Utils {
         return inSampleSize;
     }
 
-    16.请求打开蓝牙
+    //16.请求打开蓝牙
     //REQUEST_ENABLE_BT自定义requestCode
     int REQUEST_ENABLE_BT = 0;
     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT) {
     }
-    17.读取Excel文件
-    使用jxl jar包。
-    18.应用程序启动短暂白屏或者黑屏解决办法（启动页设置背景图片）
+    //17.读取Excel文件
+    //使用jxl jar包。
+    //18.应用程序启动短暂白屏或者黑屏解决办法（启动页设置背景图片）
     //1.自定义全屏主题
     <style name="FlashStyle" parent="android:style/Theme.NoTitleBar.Fullscreen">
     <item name="android:windowBackground">@drawable/start_app_flash</item>
     </style>
     //2.设置给闪屏页
     android:theme="@style/FlashStyle"
-    19.判断是否是短时间内重复点击按钮之类的动作（防止重复打开页面等）
+    //19.判断是否是短时间内重复点击按钮之类的动作（防止重复打开页面等）
     private static long lastClickTime;
     public synchronized static boolean isDoubleClick(long time) {
         long currentTime = System.currentTimeMillis();
@@ -335,7 +335,7 @@ public class Utils {
         }
         return isClick2;
     }
-    20.得到sd卡路径
+    //20.得到sd卡路径
     public static String getSDCardPath() {
         File sdcardDir = null;
         boolean sdcardExist = Environment.getExternalStorageState().equals(
@@ -348,7 +348,7 @@ public class Utils {
         }
     }
 
-    21 从网络路径下载图片保存到本地，并返回本地保存路径
+    //21 从网络路径下载图片保存到本地，并返回本地保存路径
      public static String getImageURI(String networkPath, String dirPath, String s) {
         if (networkPath == null) {
             return null;
@@ -384,7 +384,7 @@ public class Utils {
         }
         return null;
     }
-    22 改变系统语言为英文环境
+    //22 改变系统语言为英文环境
     public static void initLanguage() {
         try {
             Log.d("Appcontext", "初始化的时候设置系统语言为英文环境");
@@ -406,7 +406,7 @@ public class Utils {
         }
 
     }
-    23.异或运算和校验
+    //23.异或运算和校验
     public static byte getXor(byte[] datas) {
         byte temp = datas[0];
 
@@ -414,5 +414,20 @@ public class Utils {
             temp ^= datas[i];
         }
         return temp;
+    }
+    //24.在某个View正上方弹出PopupWindow
+    private void showPopAlongView(View v) {
+        View view = View.inflate(this, R.layout.pop_layout, null);
+        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int measureHeight = view.getMeasuredHeight();
+        int measureWidth = view.getMeasuredWidth();
+        popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setFocusable(false);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+        popupWindow.setOutsideTouchable(false);
+        int[] location = new int[2];
+        v.getLocationOnScreen(location);
+        popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, location[0] + v.getMeasuredWidth() / 2 - measureWidth / 2, location[1] - measureHeight);
+
     }
 }
