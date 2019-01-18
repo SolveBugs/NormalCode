@@ -39,6 +39,7 @@ eight months ago
 22.改变系统语言为英文环境
 23.异或运算和校验
 24.Image,Bitmap工具类：ImageUtils.java
+25.test git submodule
 ```
 
 ​    
